@@ -1,39 +1,63 @@
-
-const accountResponseData = JSON.parse(accounts);
-
-const accountsData = [];
-const accountRMData = [];
+var sortAccountsData = [];
+var sortRMData = {
+    data: [],
+    id: [],
+}
 
 
 function getAccountsData() {
 
-    for (i = 0; accountResponseData[i]; i++) {
-        accountsData[i] = {
-            id: accountResponseData[i].id,
-            name: accountResponseData.name,
-            fullName: accountResponseData[i].full_name,
-            accountId: accountResponseData[i].account_id,
-            groupName: accountResponseData[i].group_name,
-            status: accountResponseData[i].status,
+    for (i = 0; accountsData[i]; i++) {
+
+        sortAccountsData[i] = {
+            id: accountsData[i].id,
+            name: accountsData.name,
+            fullName: accountsData[i].full_name,
+            accountId: accountsData[i].account_id,
+            groupName: accountsData[i].group_name,
+            status: accountsData[i].status,
         }
-        renderMainTable(accountsData[i]);
+
+        renderMainTable(sortAccountsData[i], sortRMData.data[i]);
     }
 }
 
 function getRMData() {
-    for (i = 0; accountResponseData[i]; i++) {
-        var searchAccId = accountResponseData[i].id;
-        var RMData = JSON.parse(accounts2[searchAccId]);
 
-        accountRMData[i] = {
-            name: RMData.name,
-        }
+    for (i = 0; sortAccountsData[i]; i++) {
+
+        const user = sortAccountsData[i];
+        const rmDataToJson = JSON.parse(rmAccountsData[user.id]);
+
+        getRMItem(rmDataToJson);
+
+        sortRMData.data[i] = getRMItem(rmDataToJson);
+        sortRMData.id[i] = user.id;
     }
+
 }
 
+function getRMItem(rmDataToJson) {
+    var itemData = []
 
+    if (rmDataToJson.data) {
 
-export default function renderMainTable (item) {
+        for (j = 0; rmDataToJson.data[j]; j++) {
+            
+            itemData[j] = {
+                currency: rmDataToJson.data[j].currency,
+                name: rmDataToJson.data[j].name,
+                timeZone: rmDataToJson.data[j].timezone_name,
+                id: rmDataToJson.data[j].id,
+            }
+        
+        }
+        return itemData;
+    }
+    return "clear";
+}
+
+function renderMainTable(item) {
     const mainTable = document.getElementById('tbody');
     mainTable.innerHTML += `<tr>
     <td>${item.id}</td>

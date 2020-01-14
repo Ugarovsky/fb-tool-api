@@ -37,6 +37,5 @@
     </table>
 
 </body>
-<script src="js/view.js"></script>
 <script src="js/data.js"></script>
 </html>
