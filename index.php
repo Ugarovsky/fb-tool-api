@@ -1,4 +1,4 @@
-<?php include './service.php';?>
+<?php include 'service.php';?>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
 
 <body id='body'>
 
-    <table class="sort" align="center" id="main-table">
+    <table align="center" id="main-table">
         <thead>
             <tr>
                 <td>ID</td>
@@ -37,5 +37,6 @@
     </table>
 
 </body>
+<script src="js/view.js"></script>
 <script src="js/data.js"></script>
 </html>

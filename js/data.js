@@ -1,32 +1,40 @@
-const accountsCookies = JSON.parse(getCookie('accounts'));
+
+const accountResponseData = JSON.parse(accounts);
+
 const accountsData = [];
-console.log('asd');
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+const accountRMData = [];
 
-function getAccountsData () { 
 
-    for (i = 0; accountsCookies[i]; i++){ 
-        accountsData[i] = { 
-            id : accountsCookies[i].id,
-            name : accountsCookies.name,
-            fullName : accountsCookies[i].full_name,
-            accountId : accountsCookies[i].account_id,
-            groupName : accountsCookies[i].group_name,
-            status : accountsCookies[i].status,
+function getAccountsData() {
+
+    for (i = 0; accountResponseData[i]; i++) {
+        accountsData[i] = {
+            id: accountResponseData[i].id,
+            name: accountResponseData.name,
+            fullName: accountResponseData[i].full_name,
+            accountId: accountResponseData[i].account_id,
+            groupName: accountResponseData[i].group_name,
+            status: accountResponseData[i].status,
         }
         renderMainTable(accountsData[i]);
     }
 }
 
-function renderMainTable (item) {
-    
-    const mainTable = document.getElementById('tbody');
+function getRMData() {
+    for (i = 0; accountResponseData[i]; i++) {
+        var searchAccId = accountResponseData[i].id;
+        var RMData = JSON.parse(accounts2[searchAccId]);
 
+        accountRMData[i] = {
+            name: RMData.name,
+        }
+    }
+}
+
+
+
+export default function renderMainTable (item) {
+    const mainTable = document.getElementById('tbody');
     mainTable.innerHTML += `<tr>
     <td>${item.id}</td>
     <td>${item.name}</td>
@@ -39,4 +47,5 @@ function renderMainTable (item) {
 
 
 getAccountsData();
+getRMData();
 
