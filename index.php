@@ -20,12 +20,10 @@
                 <td>Acc Id</td>
                 <td>Group Names</td>
                 <td>Status</td>
-                <td>Amount Spent</td>
-                <td>Account Id</td>
-                <td>BM id</td>
+                <td id="bm-id">BM id</td>
                 <td>BM Name</td>
-                <td>Offsetted Amount</td>
-                <td>Display String</td>
+                <td>Currency</td>
+                <td>Time Zone</td>
                 <td>Account Status</td>
                 <td>Timezone Name</td>
                 <td>Threshold Amount</td>

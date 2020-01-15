@@ -13,7 +13,7 @@ table.sort td{
 
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 14px;
+    font-size: 12px;
     border-collapse: collapse;
     text-align: center;
     }
@@ -28,6 +28,8 @@ table {
     border-color: white;
     }
     td {
+        width: auto;
+    padding: 5px;
     background: #D8E6F3;
     }
     th:first-child, td:first-child {

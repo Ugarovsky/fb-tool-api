@@ -4,7 +4,6 @@ var sortRMData = {
     id: [],
 }
 
-
 function getAccountsData() {
 
     for (i = 0; accountsData[i]; i++) {
@@ -17,8 +16,6 @@ function getAccountsData() {
             groupName: accountsData[i].group_name,
             status: accountsData[i].status,
         }
-
-        renderMainTable(sortAccountsData[i], sortRMData.data[i]);
     }
 }
 
@@ -29,28 +26,27 @@ function getRMData() {
         const user = sortAccountsData[i];
         const rmDataToJson = JSON.parse(rmAccountsData[user.id]);
 
-        getRMItem(rmDataToJson);
-
         sortRMData.data[i] = getRMItem(rmDataToJson);
         sortRMData.id[i] = user.id;
     }
-
 }
 
 function getRMItem(rmDataToJson) {
-    var itemData = []
+    var itemData = [];
 
     if (rmDataToJson.data) {
-
         for (j = 0; rmDataToJson.data[j]; j++) {
-            
+
             itemData[j] = {
                 currency: rmDataToJson.data[j].currency,
                 name: rmDataToJson.data[j].name,
                 timeZone: rmDataToJson.data[j].timezone_name,
                 id: rmDataToJson.data[j].id,
             }
-        
+
+            rmDataToJson.data[j].ads 
+            ? itemData[j].adsData = rmDataToJson.data[j].ads
+            : itemData[j].adsData = 'clear'
         }
         return itemData;
     }
@@ -59,17 +55,48 @@ function getRMItem(rmDataToJson) {
 
 function renderMainTable(item) {
     const mainTable = document.getElementById('tbody');
+
+    for (i = 0; item[i]; i++) {
     mainTable.innerHTML += `<tr>
-    <td>${item.id}</td>
-    <td>${item.name}</td>
-    <td>${item.fullName}</td>
-    <td>${item.accountId}</td>
-    <td>${item.groupName}</td>
-    <td>${item.status}</td>
+    <td>${item[i].id}</td>
+    <td>${item[i].name}</td>
+    <td>${item[i].fullName}</td>
+    <td>${item[i].accountId}</td>
+    <td>${item[i].groupName}</td>
+    <td>${item[i].status}</td>
+    <td>${renderRMIdData(i, 'id')}</td>
+    <td>${renderRMIdData(i, 'name')}</td>
+    <td>${renderRMIdData(i, 'currency')}</td>
+    <td>${renderRMIdData(i, 'timeZone')}</td>
     </tr>`
+
+    }
 }
 
+function renderRMIdData(i, param) {
+    var renderTemplate = ``;
+    
+    if (sortRMData.data[i]) {
+        for (j = 0; sortRMData.data[i][j]; j++) {
+
+            var data = (param == 'id') ? sortRMData.data[i][j].id :
+            (param == 'currency') ? sortRMData.data[i][j].currency :
+            (param == 'timeZone') ? sortRMData.data[i][j].timeZone :
+            (param == 'name') ? sortRMData.data[i][j].name :
+            false;
+
+            if (data) {
+                renderTemplate += `<strong>${j + 1}</strong>:${data}<br>`
+            }
+
+            else {
+                renderTemplate = 'clear'
+            }
+        }
+        return renderTemplate;
+    }
+}
 
 getAccountsData();
 getRMData();
-
+renderMainTable(sortAccountsData);
