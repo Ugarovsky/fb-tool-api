@@ -4,7 +4,9 @@
     margin-bottom:1em;
     margin-top:1em
 }
-
+.long{
+    min-width: 190px !important;
+}
 /* ячейки таблицы */
 table.sort td{
     border:1px solid #CCCCCC;
@@ -34,6 +36,10 @@ table {
     }
     th:first-child, td:first-child {
     text-align: left;
+    }
+    thead tr td { 
+        background: #AFCDE7;
+        color: white;
     }
 
 /* заголовки таблицы */

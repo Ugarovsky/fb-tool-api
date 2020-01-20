@@ -14,19 +14,19 @@
     <table align="center" id="main-table">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Acc Name</td>
-                <td>Acc full Name</td>
-                <td>Acc Id</td>
-                <td>Group Names</td>
-                <td>Status</td>
-                <td id="bm-id">BM id</td>
-                <td>BM Name</td>
-                <td>Currency</td>
-                <td>Time Zone</td>
-                <td>Account Status</td>
-                <td>Timezone Name</td>
-                <td>Threshold Amount</td>
+                <td>id аккаунта
+                <td>Acc Name
+                <td>Acc full Name
+                <td>Acc Id
+                <td>Group Names
+                <td>Status
+                <td id="bm-id">BM id
+                <td>BM Name
+                <td>Currency
+                <td>Time Zone
+                <td>Account Status
+                <td>Timezone Name
+                <td>Threshold Amount
             </tr>
         </thead>
         <tbody id="tbody">
